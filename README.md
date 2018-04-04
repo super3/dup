@@ -1,11 +1,50 @@
-# panopticon
-Imagine a circular prison where the prisoners are observed by a single watchman. The single watchman sits in the center of the structure, and there is a one way glass between the watchman and the window to each prisoner's cell. Due to this the inmates not able to tell whether or not they are being watched. Although it is physically impossible for the single watchman to observe all the inmates' cells at once, the fact that the inmates cannot know when they are being watched means that they are motivated to act as though they are being watched at all times. Thus they are effectively compelled to regulate their own behaviour. 
+# upproof
+Simple application to monitor uptime of nodes on a distributed network.
 
-<p align="center"> 
-  <img src="panopticon.png">
-</p>
+## /
+URL: `http://example.com/`
 
-We would like to know statistically what chance the prisoners have of detection of they misbehave. 
+METHOD: `GET`
 
-# citations
-[1] https://en.wikipedia.org/wiki/Panopticon
+Display the latest nodes as defined by seenThreshold. 
+
+```
+{
+  "active": [
+    {
+      "nodeID": "e4327043c4746c998a758db868e6d6a1ff9ddf0a",
+      "lastSeen": 1522871547654
+    },
+    {
+      "nodeID": "a14cc24085d7a9ea43ec3712d72b1dbb9ad3d2c0",
+      "lastSeen": 1522871547912
+    },
+    ...
+  ]
+}
+```
+
+
+## /api/ping
+URL: `http://example.com/api/ping/<nodeID>`
+
+METHOD: `POST`
+
+Allow the node to ping with a body.
+
+```
+{
+  "active": [
+    {
+      "nodeID": "e4327043c4746c998a758db868e6d6a1ff9ddf0a",
+      "lastSeen": 1522871547654
+    },
+    {
+      "nodeID": "a14cc24085d7a9ea43ec3712d72b1dbb9ad3d2c0",
+      "lastSeen": 1522871547912
+    },
+    ...
+  ]
+}
+```
+
