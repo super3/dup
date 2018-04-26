@@ -54,10 +54,10 @@ func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 }
 
 func Ping(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-    fmt.Fprintf(w, "hello, %s!\n", ps.ByName("address"))
-
 		z := redis.Z{Score: float64(time.Now().Unix()), Member: ps.ByName("address")}
 		client.ZAdd("nodes-active", z)
+
+		fmt.Fprintf(w, "hello, %s!\n", ps.ByName("address"))
 }
 
 func main() {
