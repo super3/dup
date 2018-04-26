@@ -25,7 +25,7 @@ func SetClient() {
 }
 
 func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-		seenThreshold := int64(10000)
+		seenThreshold := int64(300) // 5 minutes
 		timeSince := fmt.Sprintf("%d", time.Now().Unix() - seenThreshold)
 		rangeBy := redis.ZRangeBy{Min: timeSince, Max: fmt.Sprintf("%d", time.Now().Unix())}
 		results, _ := client.ZRangeByScoreWithScores("nodes-active", rangeBy).Result();
