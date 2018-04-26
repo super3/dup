@@ -48,7 +48,6 @@ func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		if err != nil {
 			log.Println("error occured encoding json response", err)
 		}
-		// efmt.Fprint(w, active)
 }
 
 func Ping(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
