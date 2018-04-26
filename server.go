@@ -25,7 +25,8 @@ func SetClient() {
 }
 
 func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-		timeSince := fmt.Sprintf("%d", time.Now().Unix() - 10000)
+		seenThreshold := int64(10000)
+		timeSince := fmt.Sprintf("%d", time.Now().Unix() - seenThreshold)
 		rangeBy := redis.ZRangeBy{Min: timeSince, Max: fmt.Sprintf("%d", time.Now().Unix())}
 		results, _ := client.ZRangeByScoreWithScores("nodes-active", rangeBy).Result();
 
@@ -44,7 +45,9 @@ func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 			Active []node `json:"active"`
 		}{nodes}
 
-		err := json.NewEncoder(w).Encode(resp)
+		enc := json.NewEncoder(w)
+		enc.SetIndent("", "    ")
+		err := enc.Encode(resp)
 		if err != nil {
 			log.Println("error occured encoding json response", err)
 		}
@@ -62,7 +65,7 @@ func main() {
 
 	router := httprouter.New()
 	router.GET("/", Index)
-	router.GET("/ping/:address", Ping)
+	router.GET("/api/ping/:address", Ping)
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }

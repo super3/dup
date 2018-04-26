@@ -6,7 +6,7 @@ URL: `http://example.com/`
 
 METHOD: `GET`
 
-Display the latest nodes as defined by seenThreshold. 
+Display the latest nodes as defined by seenThreshold.
 
 ```
 {
@@ -28,9 +28,9 @@ Display the latest nodes as defined by seenThreshold.
 ## /api/ping
 URL: `http://example.com/api/ping/<nodeID>`
 
-METHOD: `POST`
+METHOD: `GET`
 
-Allow the node to ping with a body.
+Allow the node to ping.
 
 ```
 {
@@ -47,4 +47,3 @@ Allow the node to ping with a body.
   ]
 }
 ```
-
