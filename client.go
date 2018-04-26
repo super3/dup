@@ -5,10 +5,13 @@ import (
     "net/http"
     "io/ioutil"
 		"time"
+		"flag"
 )
+var privateKey string
+var publicKey string
 
 func ping() {
-	response, err := http.Get("http://localhost:8080/api/ping/test")
+	response, err := http.Get(fmt.Sprintf("http://localhost:8080/api/ping/%s", publicKey))
 	if err != nil {
 			fmt.Printf("%s", err)
 	} else {
@@ -22,6 +25,10 @@ func ping() {
 }
 
 func main() {
+	flag.StringVar(&publicKey, "pubkey", "test", "description of the value in the flag")
+	flag.StringVar(&privateKey, "privkey", "test", "description of the value in the flag")
+	flag.Parse()
+
 	timeout := 5 * time.Second
 	for {
 		ping()
