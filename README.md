@@ -1,5 +1,5 @@
-# upproof
-Simple application to monitor uptime of nodes on a distributed network.
+# dup
+Protocol and application for tracking node uptime on a distributed network. 
 
 ## /
 URL: `http://example.com/`
